@@ -286,7 +286,11 @@ export class Connection {
               } else {
                 parsedBody = (res.body as string) || "";
               }
-              parsedBody = JSON.parse(parsedBody);
+              if (parsedBody) {
+                parsedBody = JSON.parse(parsedBody);
+              } else {
+                parsedBody = undefined;
+              }
             } catch (e) {
               if (!expectBinary) {
                 e.response = res;
